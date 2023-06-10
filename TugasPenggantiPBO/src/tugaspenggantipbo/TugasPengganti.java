@@ -28,18 +28,96 @@ public class TugasPengganti {
     static void nomorDua()throws IOException{
         System.out.println("================================================================");
         while (true) {
-            try {
-                System.out.print("Mata Kuliah      : "); 
-                String matkul = baca.readLine();
-                if (matkul.isEmpty() == false) {
-                    break;
-                }
-            } catch (matkul.isEmpty() == true) {
-                // TODO: handle exception
+            System.out.print("Mata kuliah            : "); 
+            String matkul = baca.readLine();
+            if (matkul.isEmpty() == false) {
+                break;
+            }else{
                 System.out.println("================================================================");
                 System.out.println("Inputan tidak boleh kosong. Mohon coba kembali");
+                System.out.println("================================================================");
             }
         }
+        double nilaiKehadiran = 0;
+        while (true){
+            System.out.print("Jumlah kehadiran [1-8] : ");
+            int kehadiran = Integer.parseInt(baca.readLine());
+            try{
+                if (kehadiran >= 0 && kehadiran <=8){
+                    if (kehadiran == 0 && kehadiran < 3){
+                        nilaiKehadiran = 0;
+                    }else if(kehadiran >= 3 && kehadiran <= 4){
+                        nilaiKehadiran = 60;
+                    }else if(kehadiran > 4 && kehadiran < 7){
+                        nilaiKehadiran = 80;
+                    }else if (kehadiran >= 7 && kehadiran == 8){
+                        nilaiKehadiran = 100;
+                    }
+                    break;
+                }else{
+                    System.out.println("================================================================");
+                    System.out.println("Inputan tidak valid. Mohon inputkan jumlah kehadiran dari 1-8");
+                    System.out.println("================================================================");
+                }
+            }catch(NumberFormatException e){
+                System.out.println("================================================================");
+                System.out.println(" Inputan harus di isi dengan angka, mohon coba kembali!");
+                System.out.println("================================================================");
+            }  
+        }
+        double nilaiUTS = 0;
+        while (true){
+            System.out.print("Nilai UTS              : ");
+            nilaiUTS = Double.parseDouble(baca.readLine());
+            try{
+                if (nilaiUTS >= 0 && nilaiUTS <= 100){
+                    break;
+                }else{
+                    System.out.println("================================================================");
+                    System.out.println("Inputan tidak valid. Mohon inputkan angka mulai dari 0-100");
+                    System.out.println("================================================================");
+                }
+            }catch (NumberFormatException e){
+                System.out.println("================================================================");
+                System.out.println(" Inputan harus di isi dengan angka, mohon coba kembali!");
+                System.out.println("================================================================");
+            }
+        }
+        double nilaiUAS = 0;
+        while (true){
+            System.out.print("Nilai UAS              : ");
+            nilaiUAS = Double.parseDouble(baca.readLine());
+            try{
+                if (nilaiUAS >= 0 && nilaiUAS <= 100){
+                    break;
+                }else{
+                    System.out.println("================================================================");
+                    System.out.println("Inputan tidak valid. Mohon inputkan angka mulai dari 0-100");
+                    System.out.println("================================================================");
+                }
+            }catch (NumberFormatException e){
+                System.out.println("================================================================");
+                System.out.println(" Inputan harus di isi dengan angka, mohon coba kembali!");
+                System.out.println("================================================================");
+            }
+        }
+        double nilaiAkhir = (nilaiKehadiran * 0.2) + (nilaiUTS * 0.3) + (nilaiUAS * 0.5) ;
+        String grade = null;
+        if(nilaiAkhir  < 50){
+            grade = "E";
+        }else if(nilaiAkhir >= 50 && nilaiAkhir <= 59){
+            grade = "D";
+        }else if(nilaiAkhir >= 60 && nilaiAkhir <= 69){
+            grade = "C";
+        }else if(nilaiAkhir >= 70 && nilaiAkhir <= 84){
+            grade = "B";
+        }else if(nilaiAkhir >= 85 && nilaiAkhir <=100){
+            grade = "A";
+        }
+        System.out.println("================================================================");
+        System.out.println("Nilai Akhir : " + nilaiAkhir);
+        System.out.println("Grade       : " + grade);
+        System.out.println("================================================================\n");
     }
     
     public static void main(String[] args) throws IOException {
@@ -73,12 +151,14 @@ public class TugasPengganti {
                     default:
                         System.out.println("================================================================");
                         System.out.println(" Inputan tidak ditemukan, mohon coba kembali!");
+                        System.out.println("================================================================");
                         break;
                 }
             } catch (NumberFormatException e) {
                 // TODO: handle exception
                 System.out.println("================================================================");
                 System.out.println(" Inputan harus di isi dengan angka, mohon coba kembali!");
+                System.out.println("================================================================");
             }
         }
     } 
